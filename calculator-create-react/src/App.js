@@ -3,6 +3,7 @@ import Screen from "./components/screen/screen";
 import ButtonBox from "./components/buttonBox/buttonBox";
 import Button from "./components/buttons/buttons";
 import TimeDate from "./components/timeDate/timeDate";
+import React, { useState } from "react";
 
 const buttonValues = [
   ["C", "+-", "%", "/"],
@@ -13,10 +14,16 @@ const buttonValues = [
 ];
 
 const App = () => {
+  let [calc, setCalc] = useState({
+    sign: "",
+    num: 0,
+    res: 0,
+  });
+
   return (
     <Wrapper>
       <TimeDate />
-      <Screen value="0" />
+      <Screen value={calc.num ? calc.num : calc.res} />
       <ButtonBox>
         {buttonValues.flat().map((btn, i) => {
           return (
